@@ -5,7 +5,7 @@ repository:
     nestjs:
         url: https://github.com/dockhost/example-nestjs
         branch: main
-        username: <Данимир>
+        username: <PoTaTo>
         password: <1qaz2wsx3Ssunsey)>
         cpu: 1
         cpuFraction: 5
