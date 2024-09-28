@@ -1,0 +1,14 @@
+version: 1
+project: my-project
+
+repository:
+    nestjs:
+        url: https://github.com/dockhost/example-nestjs
+        branch: main
+        username: <Данимир>
+        password: <1qaz2wsx3Ssunsey)>
+        cpu: 1
+        cpuFraction: 5
+        memory: 256MiB
+        dockerFile: Dockerfile
+        dockerContext: .
