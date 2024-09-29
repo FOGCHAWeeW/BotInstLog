@@ -5,6 +5,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.utils import executor
 from datetime import datetime
+from aiogram.types.web_app_info import WebAppInfo
 
 # Включаем логирование
 logging.basicConfig(level=logging.INFO)
@@ -31,6 +32,7 @@ async def start_command(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = ["✅СДЕЛАТЬ ЗАКАЗ", "⚙️ПОМОЩЬ"]
     keyboard.add(*buttons)
+    #keyboard.add(types.KeyboardButton('ОТКРЫТЬ APP', web_app=WebAppInfo(url='https://www.poizon.com/')))
     photoZastav = 'zstavTG.jpg'
     with open(photoZastav, 'rb') as photo:
         await bot.send_photo(message.from_user.id, photo, caption='🔥Wassup!'
@@ -41,6 +43,9 @@ async def start_command(message: types.Message):
     #                  '\n✅Мы поможем тебе заказать и доставить товары с популярных маркетплейсов Китая'
     #                  '\n🕒️Наша служба поддержки работает с 8:00 до 21:00 каждый день'
     #                  '\n❗️Вперёд – это не сложно', reply_markup=keyboard)
+
+
+
 
 @dp.message_handler(lambda message: message.text == "✅СДЕЛАТЬ ЗАКАЗ")
 async def choose_store(message: types.Message):
@@ -54,24 +59,35 @@ async def choose_store(message: types.Message):
 @dp.message_handler(lambda message: message.text in stores, state=OrderState.waiting_for_store)
 async def get_product_info(message: types.Message, state: FSMContext):
     await state.update_data(chosen_store=message.text)
+
+
     photoHelp95 = 'help95.jpg'
     photoHelpAlibaba = 'helpAlibaba.jpg'
     photoHelpPoizon = 'helpPoizon.jpg'
     photoHelpTaobao = 'helpTaobao.jpg'
     if message.text == 'POIZON':
+        keyboardP = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        bPoizon = types.KeyboardButton('🔥ОТКРЫТЬ POIZON', web_app=WebAppInfo(url='https://www.poizon.com/'))
+        keyboardP.add(bPoizon)
         with open(photoHelpPoizon, 'rb') as photo:
             await bot.send_photo(message.from_user.id, photo,
-                                 caption=f"✅Вы выбрали магазин: {message.text}\n🎯Отправь ссылку или название товара:")
+                                 caption=f"✅Вы выбрали магазин: {message.text}\n🎯Отправь ссылку или название товара:", reply_markup=keyboardP)
 
     if message.text == 'Alibaba':
+        keyboardA = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        bAlibaba = types.KeyboardButton('🔥ОТКРЫТЬ Alibaba', web_app=WebAppInfo(url='https://www.alibaba.com/'))
+        keyboardA.add(bAlibaba)
         with open(photoHelpAlibaba, 'rb') as photo:
             await bot.send_photo(message.from_user.id, photo,
-                                 caption=f"✅Вы выбрали магазин: {message.text}\n🎯Отправь ссылку или название товара:")
+                                 caption=f"✅Вы выбрали магазин: {message.text}\n🎯Отправь ссылку или название товара:", reply_markup=keyboardA)
 
     if message.text == 'Taobao':
+        keyboardT = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        bTaobao = types.KeyboardButton('🔥ОТКРЫТЬ Taobao', web_app=WebAppInfo(url='https://www.taobao.com/'))
+        keyboardT.add(bTaobao)
         with open(photoHelpTaobao, 'rb') as photo:
             await bot.send_photo(message.from_user.id, photo,
-                                 caption=f"✅Вы выбрали магазин: {message.text}\n🎯Отправь ссылку или название товара:")
+                                 caption=f"✅Вы выбрали магазин: {message.text}\n🎯Отправь ссылку или название товара:", reply_markup=keyboardT)
 
     if message.text == '95':
         with open(photoHelp95, 'rb') as photo:
