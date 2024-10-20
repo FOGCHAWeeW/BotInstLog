@@ -162,16 +162,20 @@ async def help_command(message: types.Message):
 
 @dp.message_handler(lambda message: message.text, state='*')
 async def unknown_message(message: types.Message):
-    await message.answer("Чёт я не понял, о чём ты\nНАЖМИ СЮДА 👉 /start")
-
-    
-@dp.message_handler(commands=['open'])
-async def open_command(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button = types.KeyboardButton("🌐 Перейти на сайт", web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
     keyboard.add(button)
     
     await message.answer("📱 В ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboard)
+
+    
+#@dp.message_handler(commands=['open'])
+#async def open_command(message: types.Message):
+#    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+#    button = types.KeyboardButton("🌐 Перейти на сайт", web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
+#    keyboard.add(button)
+#    
+#    await message.answer("📱 В ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboard)
     
 
 if __name__ == '__main__':
