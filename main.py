@@ -171,7 +171,7 @@ async def get_web(message: types.Message):
     bWeb = types.KeyboardButton('🔥ОТКРЫТЬ ВЭБ ПРИЛОЖЕНИЕ', web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
     keyboardWeb.add(bWeb)
     await message.answer("💡В НАШЕМ ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboardWeb)
-    await OrderState.waiting_for_store.set()
+    
 
 
 if __name__ == '__main__':
