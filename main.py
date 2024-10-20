@@ -162,10 +162,9 @@ async def help_command(message: types.Message):
 
 @dp.message_handler(lambda message: message.text, state='*')
 async def unknown_message(message: types.Message):
- keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button = types.KeyboardButton("🌐 Перейти на сайт", web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
     keyboard.add(button)
-
     await message.answer("📱 В ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboard)
     
 #@dp.message_handler(commands=['open'])
