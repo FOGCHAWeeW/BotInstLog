@@ -162,20 +162,15 @@ async def help_command(message: types.Message):
 
 @dp.message_handler(lambda message: message.text, state='*')
 async def unknown_message(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button = types.KeyboardButton("🌐 Перейти на сайт", web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
-    keyboard.add(button)
-    
-    await message.answer("📱 В ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboard)
+    await message.answer("Чёт я не понял, о чём ты\nНАЖМИ СЮДА 👉 /start")
 
-    
-#@dp.message_handler(commands=['open'])
-#async def open_command(message: types.Message):
-#    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-#    button = types.KeyboardButton("🌐 Перейти на сайт", web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
-#    keyboard.add(button)
-#    
-#    await message.answer("📱 В ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboard)
+@dp.message_handler(commands=['open'])
+async def get_web(message: types.Message):
+    keyboardWeb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    bWeb = types.KeyboardButton('🔥ОТКРЫТЬ ВЭБ ПРИЛОЖЕНИЕ🔥', web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
+    keyboardWeb.add(bWeb)
+    await message.answer("В НАШЕМ ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboardWeb)
+
     
 
 if __name__ == '__main__':
