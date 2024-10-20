@@ -46,7 +46,7 @@ async def start_command(message: types.Message):
 
 
 @dp.message_handler(commands=['open'])
-async def start_command(message: types.Message):
+async def get_web(message: types.Message):
     keyboardWeb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     bWeb = types.KeyboardButton('🔥ОТКРЫТЬ ВЭБ ПРИЛОЖЕНИЕ🔥', web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
     keyboardWeb.add(bWeb)
