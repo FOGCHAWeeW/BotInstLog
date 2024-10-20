@@ -45,12 +45,6 @@ async def start_command(message: types.Message):
     #                  '\n❗️Вперёд – это не сложно', reply_markup=keyboard)
 
 
-@dp.message_handler(commands=['open'])
-async def get_web(message: types.Message):
-    keyboardWeb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    bWeb = types.KeyboardButton('🔥ОТКРЫТЬ ВЭБ ПРИЛОЖЕНИЕ🔥', web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
-    keyboardWeb.add(bWeb)
-    await OrderState.waiting_for_store.set()
 
 
 
@@ -169,6 +163,16 @@ async def help_command(message: types.Message):
 @dp.message_handler(lambda message: message.text, state='*')
 async def unknown_message(message: types.Message):
     await message.answer("Чёт я не понял, о чём ты\nНАЖМИ СЮДА 👉 /start")
+
+
+@dp.message_handler(lambda message: message.text, state='open')
+async def get_web(message: types.Message):
+    keyboardWeb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    bWeb = types.KeyboardButton('🔥ОТКРЫТЬ ВЭБ ПРИЛОЖЕНИЕ🔥', web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
+    keyboardWeb.add(bWeb)
+    await message.answer("В НАШЕМ ПРИЛОЖЕНИИ УДОБНЕЕ", reply_markup=keyboardWeb)
+    await OrderState.waiting_for_store.set()
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
