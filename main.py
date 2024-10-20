@@ -165,7 +165,7 @@ async def unknown_message(message: types.Message):
     await message.answer("Чёт я не понял, о чём ты\nНАЖМИ СЮДА 👉 /start")
 
 
-@dp.message_handler(lambda message: message.text, state='open')
+@dp.message_handler(lambda message: message.text == '/open')
 async def get_web(message: types.Message):
     keyboardWeb = types.ReplyKeyboardMarkup(resize_keyboard=True)
     bWeb = types.KeyboardButton('🔥ОТКРЫТЬ ВЭБ ПРИЛОЖЕНИЕ🔥', web_app=WebAppInfo(url='https://pw4227.craftum.io/'))
